@@ -1,0 +1,14 @@
+.row-flex {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell {
+    display: inline-flex;
+    width: 50px !important;
+    height: 50px !important;
+    justify-content: center;
+    align-items: center;
+}
