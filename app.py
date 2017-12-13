@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, send_from_directory
 
 from solver import solve, time_solve
 
-app = Flask(__name__, static_folder='build/static')
+app = Flask(__name__, static_path='/build')
 
 
 @app.route('/solve', methods=['POST'])
@@ -24,8 +24,7 @@ def solve():
 def serve(path):
     print('you requested {}'.format(path))
 
-    return "hello"
-    # return send_from_directory('build', 'index.html')
+    return send_from_directory('build', 'index.html')
 
 
 if __name__ == '__main__':
