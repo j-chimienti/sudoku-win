@@ -23,7 +23,7 @@ def solve():
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
-def serve():
+def serve(path):
 
     return send_from_directory('build', 'index.html')
 
