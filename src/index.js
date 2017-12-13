@@ -11,4 +11,4 @@ import 'react-bootstrap/dist/react-bootstrap.min';
 import 'bootswatch/dist/flatly/bootstrap.min.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();
