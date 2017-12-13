@@ -22,8 +22,8 @@ def solve():
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
-    return "hello world"
-    # return send_from_directory('build', 'index.html')
+    print('you requested {}'.format(path))
+    return send_from_directory('build', 'index.html')
 
 
 if __name__ == '__main__':
@@ -34,4 +34,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
     port = args.port
 
-    app.run(host='0.0.0.0', port=port, threaded=False, use_reloader=False)
+    app.run(port=port, threaded=False, use_reloader=False)
