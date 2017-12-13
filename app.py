@@ -27,6 +27,16 @@ def serve(path):
     return send_from_directory('build', 'index.html')
 
 
+@app.errorhandler(500)
+def page_not_found(e):
+    return send_from_directory('build', 'index.html')
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return send_from_directory('build', 'index.html')
+
+
 if __name__ == '__main__':
     from argparse import ArgumentParser
 
