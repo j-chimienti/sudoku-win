@@ -2,7 +2,9 @@ from flask import Flask, jsonify, request, send_from_directory, render_template
 
 from solver import solve, time_solve
 
-app = Flask(__name__, static_path='/build')
+import os
+
+app = Flask(__name__)
 
 
 @app.route('/solve', methods=['POST'])
@@ -23,6 +25,10 @@ def solve():
 @app.route('/<path:path>')
 def serve(path):
     print('you requested {}'.format(path))
+
+    root_dir = os.path.dirname(os.getcwd())
+
+    print('root dir {}'.format(root_dir))
 
     return send_from_directory('build', 'index.html')
 
