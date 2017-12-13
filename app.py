@@ -26,9 +26,8 @@ def solve():
 def serve(path):
     print('you requested {}'.format(path))
 
-    root_dir = os.path.dirname(os.getcwd())
-
-    print('root dir {}'.format(root_dir))
+    from subprocess import call
+    call(["ls", "-l"])
 
     return send_from_directory('build', 'index.html')
 
