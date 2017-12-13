@@ -21,7 +21,8 @@ def solve():
     return jsonify('bad request'), 400
 
 
-@app.route('/')
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
 def serve():
 
     return send_from_directory('build', 'index.html')
