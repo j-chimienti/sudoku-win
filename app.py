@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, send_from_directory, render_template
 
 from solver import solve, time_solve
 
@@ -24,16 +24,6 @@ def solve():
 def serve(path):
     print('you requested {}'.format(path))
 
-    return send_from_directory('build', 'index.html')
-
-
-@app.errorhandler(500)
-def page_not_found(e):
-    return send_from_directory('build', 'index.html')
-
-
-@app.errorhandler(404)
-def page_not_found(e):
     return send_from_directory('build', 'index.html')
 
 
