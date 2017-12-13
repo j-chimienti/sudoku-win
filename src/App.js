@@ -10,8 +10,6 @@ const grid_1 = '0030206009003050010018064000081029007000000080067082000026095008
 
 const grid_2 = `400000805030000000000700000020000060000080400000010000000603070500200000104000000`;
 
-const grids = [grid_1, grid_2];
-
 const cols = '132456789'.split('');
 
 const digits = cols;
@@ -197,7 +195,7 @@ rows.forEach(row => {
 export default class App extends Component {
 
     state = {
-        values: grid_1,//'.'.repeat(81).split('')
+        values: grid_1,
         time: null,
         collapse: {
             easy: false,
@@ -256,7 +254,7 @@ export default class App extends Component {
 
             this.setState({
                 time,
-                values: Object.values(digits),
+                values: Object.values(digits).toString().replace(/\,/g, ""),
             })
 
         }).catch(err => {
@@ -292,11 +290,9 @@ export default class App extends Component {
                         className={'form-control cell'}
                         value={values[i]}
                         onChange={e => this.setState({
-                            values: {
-                                ...values,
-                                [i]: e.target.value,
-                            }
-                        })}/>
+                            values: values.substr(0, i) + e.target.value + values.substr(i + 1)
+                        })
+                        }/>
                     <input
                         type={"number"}
                         min={0}
@@ -304,11 +300,9 @@ export default class App extends Component {
                         className={'form-control cell'}
                         value={values[i + 1]}
                         onChange={e => this.setState({
-                            values: {
-                                ...values,
-                                [i + 1]: e.target.value,
-                            }
-                        })}/>
+                            values: values.substr(0, i + 1) + e.target.value + values.substr(i + 1 + 1)
+                        })
+                        }/>
                     <input
                         type={"number"}
                         min={0}
@@ -316,11 +310,9 @@ export default class App extends Component {
                         className={'form-control cell'}
                         value={values[i + 2]}
                         onChange={e => this.setState({
-                            values: {
-                                ...values,
-                                [i + 2]: e.target.value,
-                            }
-                        })}/>
+                            values: values.substr(0, i + 2) + e.target.value + values.substr(i + 2 + 1)
+                        })
+                        }/>
                     <input
                         type={"number"}
                         min={0}
@@ -328,11 +320,9 @@ export default class App extends Component {
                         className={'form-control cell right_border'}
                         value={values[i + 3]}
                         onChange={e => this.setState({
-                            values: {
-                                ...values,
-                                [i + 3]: e.target.value,
-                            }
-                        })}/>
+                            values: values.substr(0, i + 3) + e.target.value + values.substr(i + 3 + 1)
+                        })
+                        }/>
 
                     <input
                         type={"number"}
@@ -341,11 +331,9 @@ export default class App extends Component {
                         className={'form-control cell'}
                         value={values[i + 4]}
                         onChange={e => this.setState({
-                            values: {
-                                ...values,
-                                [i + 4]: e.target.value,
-                            }
-                        })}/>
+                            values: values.substr(0, i + 4) + e.target.value + values.substr(i + 4 + 1)
+                        })
+                        }/>
                     <input
                         type={"number"}
                         min={0}
@@ -353,11 +341,9 @@ export default class App extends Component {
                         className={'form-control cell'}
                         value={values[i + 5]}
                         onChange={e => this.setState({
-                            values: {
-                                ...values,
-                                [i + 5]: e.target.value,
-                            }
-                        })}/>
+                            values: values.substr(0, i + 5) + e.target.value + values.substr(i + 5 + 1)
+                        })
+                        }/>
                     <input
                         type={"number"}
                         min={0}
@@ -365,11 +351,9 @@ export default class App extends Component {
                         className={'form-control cell'}
                         value={values[i + 6]}
                         onChange={e => this.setState({
-                            values: {
-                                ...values,
-                                [i + 6]: e.target.value,
-                            }
-                        })}/>
+                            values: values.substr(0, i + 6) + e.target.value + values.substr(i + 6 + 1)
+                        })
+                        }/>
                     <input
                         type={"number"}
                         min={0}
@@ -377,11 +361,9 @@ export default class App extends Component {
                         className={'form-control cell'}
                         value={values[i + 7]}
                         onChange={e => this.setState({
-                            values: {
-                                ...values,
-                                [i + 7]: e.target.value,
-                            }
-                        })}/>
+                            values: values.substr(0, i + 7) + e.target.value + values.substr(i + 7 + 1)
+                        })
+                        }/>
                     <input
                         type={"number"}
                         min={0}
@@ -389,11 +371,9 @@ export default class App extends Component {
                         className={'form-control cell'}
                         value={values[i + 8]}
                         onChange={e => this.setState({
-                            values: {
-                                ...values,
-                                [i + 8]: e.target.value,
-                            }
-                        })}/>
+                            values: values.substr(0, i + 8) + e.target.value + values.substr(i + 8 + 1)
+                        })
+                        }/>
                 </div>
             );
 
@@ -415,21 +395,21 @@ export default class App extends Component {
                     onSubmit={this.handleSubmit}
                 >
 
-                   <Row className={'bottom_row'}>
-                       <Button
-                           onClick={this.reset}
-                       >
-                           Reset
-                       </Button>
+                    <Row className={'bottom_row'}>
+                        <Button
+                            onClick={this.reset}
+                        >
+                            Reset
+                        </Button>
 
-                       <Button
-                           bsSize={'large'}
-                           disabled={!!time}
-                           bsStyle={'primary'}
-                           type={'submit'}>
-                           Submit
-                       </Button>
-                   </Row>
+                        <Button
+                            bsSize={'large'}
+                            disabled={!!time}
+                            bsStyle={'primary'}
+                            type={'submit'}>
+                            Submit
+                        </Button>
+                    </Row>
                     <Row>
                         <Col sm={9}>
                             {rows}
@@ -502,7 +482,6 @@ export default class App extends Component {
                                         )}
                                     </div>
                                 </Collapse>
-
 
 
                             </div>

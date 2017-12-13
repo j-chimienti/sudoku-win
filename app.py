@@ -1,10 +1,10 @@
-from flask import Flask, jsonify, request, send_from_directory, render_template
+from flask import Flask, jsonify, request, send_from_directory
 
 from solver import solve, time_solve
 
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="/static")
 
 
 @app.route('/solve', methods=['POST'])
@@ -24,11 +24,6 @@ def solve():
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
-    print('you requested {}'.format(path))
-
-    from subprocess import call
-    call(["ls", "-l"])
-
     return send_from_directory('static', 'index.html')
 
 
