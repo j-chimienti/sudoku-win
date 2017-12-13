@@ -29,7 +29,7 @@ def serve(path):
     from subprocess import call
     call(["ls", "-l"])
 
-    return send_from_directory('build', 'index.html')
+    return send_from_directory('static', 'index.html')
 
 
 if __name__ == '__main__':
