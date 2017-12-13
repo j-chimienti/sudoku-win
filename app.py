@@ -23,7 +23,9 @@ def solve():
 @app.route('/<path:path>')
 def serve(path):
     print('you requested {}'.format(path))
-    return send_from_directory('build', 'index.html')
+
+    return "hello"
+    # return send_from_directory('build', 'index.html')
 
 
 if __name__ == '__main__':
