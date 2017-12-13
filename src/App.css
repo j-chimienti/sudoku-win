@@ -1,4 +1,5 @@
-.row-flex {
+
+.row_flex {
 
     display: flex;
     align-items: center;
@@ -11,4 +12,59 @@
     height: 50px !important;
     justify-content: center;
     align-items: center;
+    padding: 0;
+}
+
+.form-control {
+
+    outline: 1px solid;
+
+}
+
+.row_flex:first-child > .form-control {
+
+    border-top: 4px solid;
+
+}
+
+.row_flex:nth-child(4) > .form-control {
+
+    border-top: 4px solid;
+
+}
+
+.row_flex:nth-child(7) > .form-control {
+
+    border-top: 4px solid;
+
+}
+
+.row_flex:last-child > .form-control {
+
+    border-bottom: 4px solid;
+
+}
+
+.row_flex > .form-control:nth-child(3n) {
+
+    border-right: 4px solid;
+
+}
+
+.row_flex > .form-control:first-child {
+
+    border-left: 4px solid;
+
+}
+
+input {
+    font-size: 2rem !important;
+}
+
+.bottom_row {
+
+    position: fixed;
+    bottom: 0;
+    right: 50%;
+    transform: translate(-50%);
 }

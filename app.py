@@ -11,15 +11,13 @@ app = Flask(__name__)
 def solve():
     json = request.get_json()
 
-    print(json)
+    # print(json)
 
     grid = json['grid']
 
-    t = time_solve(grid)
+    result = time_solve(grid)
 
-    d = t[2]
-
-    return jsonify(d), 200
+    return jsonify(result), 200
 
 
 if __name__ == '__main__':
