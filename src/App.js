@@ -201,7 +201,8 @@ export default class App extends Component {
             easy: false,
             top_95: false,
             hard: false,
-        }
+        },
+        loading: false,
 
     };
 
@@ -232,6 +233,9 @@ export default class App extends Component {
         const _values_ = values_.replace(/[^0-9]/g, '0');
 
 
+        this.setState({loading: true});
+
+
         fetch('/solve', {
             method: 'post',
             headers: {
@@ -255,6 +259,7 @@ export default class App extends Component {
             this.setState({
                 time,
                 values: Object.values(digits).toString().replace(/\,/g, ""),
+                loading: false,
             })
 
         }).catch(err => {
@@ -288,7 +293,7 @@ export default class App extends Component {
                         min={0}
                         max={9}
                         className={'form-control cell'}
-                        value={values[i]}
+                        value={values[i] == "0" ? '' : values[i]}
                         onChange={e => this.setState({
                             values: values.substr(0, i) + e.target.value + values.substr(i + 1)
                         })
@@ -298,7 +303,7 @@ export default class App extends Component {
                         min={0}
                         max={9}
                         className={'form-control cell'}
-                        value={values[i + 1]}
+                        value={values[i + 1] === "0" ? '' : values[i + 1]}
                         onChange={e => this.setState({
                             values: values.substr(0, i + 1) + e.target.value + values.substr(i + 1 + 1)
                         })
@@ -308,7 +313,7 @@ export default class App extends Component {
                         min={0}
                         max={9}
                         className={'form-control cell'}
-                        value={values[i + 2]}
+                        value={values[i + 2] === "0" ? '' : values[i + 2]}
                         onChange={e => this.setState({
                             values: values.substr(0, i + 2) + e.target.value + values.substr(i + 2 + 1)
                         })
@@ -318,7 +323,7 @@ export default class App extends Component {
                         min={0}
                         max={9}
                         className={'form-control cell right_border'}
-                        value={values[i + 3]}
+                        value={values[i + 3] === "0" ? '' : values[i + 3]}
                         onChange={e => this.setState({
                             values: values.substr(0, i + 3) + e.target.value + values.substr(i + 3 + 1)
                         })
@@ -329,7 +334,7 @@ export default class App extends Component {
                         min={0}
                         max={9}
                         className={'form-control cell'}
-                        value={values[i + 4]}
+                        value={values[i + 4] === "0" ? '' : values[i + 4]}
                         onChange={e => this.setState({
                             values: values.substr(0, i + 4) + e.target.value + values.substr(i + 4 + 1)
                         })
@@ -339,7 +344,7 @@ export default class App extends Component {
                         min={0}
                         max={9}
                         className={'form-control cell'}
-                        value={values[i + 5]}
+                        value={values[i + 5] === "0" ? '' : values[i + 5]}
                         onChange={e => this.setState({
                             values: values.substr(0, i + 5) + e.target.value + values.substr(i + 5 + 1)
                         })
@@ -349,7 +354,7 @@ export default class App extends Component {
                         min={0}
                         max={9}
                         className={'form-control cell'}
-                        value={values[i + 6]}
+                        value={values[i + 6] === "0" ? '' : values[i + 6]}
                         onChange={e => this.setState({
                             values: values.substr(0, i + 6) + e.target.value + values.substr(i + 6 + 1)
                         })
@@ -359,7 +364,7 @@ export default class App extends Component {
                         min={0}
                         max={9}
                         className={'form-control cell'}
-                        value={values[i + 7]}
+                        value={values[i + 7] === "0" ? '' : values[i + 7]}
                         onChange={e => this.setState({
                             values: values.substr(0, i + 7) + e.target.value + values.substr(i + 7 + 1)
                         })
@@ -369,7 +374,7 @@ export default class App extends Component {
                         min={0}
                         max={9}
                         className={'form-control cell'}
-                        value={values[i + 8]}
+                        value={values[i + 8] === "0" ? '' : values[i + 8]}
                         onChange={e => this.setState({
                             values: values.substr(0, i + 8) + e.target.value + values.substr(i + 8 + 1)
                         })
@@ -415,76 +420,82 @@ export default class App extends Component {
                             {rows}
                         </Col>
                         <Col sm={3}>
-                            <div>
+                            <Grid>
+                                <Row>
 
-                                <Button onClick={() => this.setState(
-                                    {
-                                        collapse:
-                                            {
-                                                ...this.state.collapse,
-                                                easy: !this.state.collapse.easy
-                                            }
-                                    })
-                                }>Easy</Button>
-                                <Collapse in={collapse.easy}>
-                                    <div>
-                                        {easy.map((eas, idx) =>
-                                            <Button
-                                                key={eas + idx}
-                                                onClick={() => this.setState({values: eas, time: null})}
-                                            >
-                                                {idx + 1}
-                                            </Button>
-                                        )}
-                                    </div>
-                                </Collapse>
+                                    <Button onClick={() => this.setState(
+                                        {
+                                            collapse:
+                                                {
+                                                    ...this.state.collapse,
+                                                    easy: !this.state.collapse.easy
+                                                }
+                                        })
+                                    }>Easy</Button>
+                                    <Collapse in={collapse.easy}>
+                                        <div>
+                                            {easy.map((eas, idx) =>
+                                                <Button
+                                                    key={eas + idx}
+                                                    onClick={() => this.setState({values: eas, time: null})}
+                                                >
+                                                    {idx + 1}
+                                                </Button>
+                                            )}
+                                        </div>
+                                    </Collapse>
+                                </Row>
 
-                                <Button onClick={() => this.setState(
-                                    {
-                                        collapse:
-                                            {
-                                                ...this.state.collapse,
-                                                hard: !this.state.collapse.hard
-                                            }
-                                    })
-                                }>Hard</Button>
-                                <Collapse in={collapse.hard}>
-                                    <div>
-                                        {hardest.map((eas, idx) =>
-                                            <Button
-                                                key={eas + idx}
-                                                onClick={() => this.setState({values: eas, time: null})}
-                                            >
-                                                {idx + 1}
-                                            </Button>
-                                        )}
-                                    </div>
-                                </Collapse>
+                                <Row>
+                                    <Button onClick={() => this.setState(
+                                        {
+                                            collapse:
+                                                {
+                                                    ...this.state.collapse,
+                                                    hard: !this.state.collapse.hard
+                                                }
+                                        })
+                                    }>Hard</Button>
+                                    <Collapse in={collapse.hard}>
+                                        <div>
+                                            {hardest.map((eas, idx) =>
+                                                <Button
+                                                    key={eas + idx}
+                                                    onClick={() => this.setState({values: eas, time: null})}
+                                                >
+                                                    {idx + 1}
+                                                </Button>
+                                            )}
+                                        </div>
+                                    </Collapse>
+                                </Row>
 
-                                <Button onClick={() => this.setState(
-                                    {
-                                        collapse:
-                                            {
-                                                ...this.state.collapse,
-                                                top_95: !this.state.collapse.top_95
-                                            }
-                                    })
-                                }>Top 95</Button>
-                                <Collapse in={collapse.top_95}>
-                                    <div>
-                                        {top_95.map((eas, idx) =>
-                                            <Button
-                                                key={eas + idx}
-                                                onClick={() => this.setState({values: eas, time: null})}
-                                            >
-                                                {idx + 1}
-                                            </Button>
-                                        )}
-                                    </div>
-                                </Collapse>
+                                <Row>
+                                    <Button onClick={() => this.setState(
+                                        {
+                                            collapse:
+                                                {
+                                                    ...this.state.collapse,
+                                                    top_95: !this.state.collapse.top_95
+                                                }
+                                        })
+                                    }>Top 95</Button>
+                                    <Collapse in={collapse.top_95}>
+                                        <div>
+                                            {top_95.map((eas, idx) =>
+                                                <Button
+                                                    key={eas + idx}
+                                                    onClick={() => this.setState({values: eas, time: null})}
+                                                >
+                                                    {idx + 1}
+                                                </Button>
+                                            )}
+                                        </div>
+                                    </Collapse>
+                                </Row>
 
 
-                            </div>
+                            </Grid>
 
 
                         </Col>
