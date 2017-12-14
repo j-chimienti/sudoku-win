@@ -1,3 +1,6 @@
+import time
+
+
 ## Solve Every Sudoku Puzzle
 
 ## See http://norvig.com/sudoku.html
@@ -10,6 +13,13 @@
 ##   u is a unit,   e.g. ['A1','B1','C1','D1','E1','F1','G1','H1','I1']
 ##   grid is a grid,e.g. 81 non-blank chars, e.g. starting with '.18...7...
 ##   values is a dict of possible values, e.g. {'A1':'12349', 'A2':'8', ...}
+
+
+grid1 = '003020600900305001001806400008102900700000008006708200002609500800203009005010300'
+grid2 = '4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......'
+hard1 = '.....6....59.....82....8....45........3........6..3.54...325..6..................'
+
+
 
 def cross(A, B):
     "Cross product of elements in A and elements in B."
@@ -139,7 +149,7 @@ def search(values):
 
 ################ System test ################
 
-import time
+
 
 
 def solve_all(grids, name=''):
@@ -164,9 +174,4 @@ def solved(values):
     def unitsolved(unit): return set(values[s] for s in unit) == set(digits)
 
     return values is not False and all(unitsolved(unit) for unit in unitlist)
-
-
-grid1 = '003020600900305001001806400008102900700000008006708200002609500800203009005010300'
-grid2 = '4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......'
-hard1 = '.....6....59.....82....8....45........3........6..3.54...325..6..................'
 

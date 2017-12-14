@@ -278,7 +278,7 @@ export default class App extends Component {
 
         const rows = [];
 
-        const {values, time, collapse} = this.state;
+        const {values, time, collapse, loading} = this.state;
 
 
         for (let i = 0; i <= 81 - 9; i += 9) {
@@ -416,9 +416,6 @@ export default class App extends Component {
                         </Button>
                     </Row>
                     <Row>
-                        <Col sm={9}>
-                            {rows}
-                        </Col>
                         <Col sm={3}>
                             <Grid>
                                 <Row>
@@ -499,6 +496,11 @@ export default class App extends Component {
 
 
                         </Col>
+                        <Col sm={9}>
+                            {loading && <i className='fa fa-spinner'></i>}
+                            {!loading && rows}
+                        </Col>
+
                     </Row>
                 </form>
             </Grid>
