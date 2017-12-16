@@ -497,8 +497,7 @@ export default class App extends Component {
 
                         </Col>
                         <Col sm={9}>
-                            {loading && <i className='fa fa-spinner'></i>}
-                            {!loading && rows}
+                            {rows}
                         </Col>
 
                     </Row>
