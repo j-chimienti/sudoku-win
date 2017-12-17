@@ -442,7 +442,7 @@ export default class App extends Component {
                                             {easy.map((eas, idx) =>
                                                 <Button
                                                     key={eas + idx}
-                                                    onClick={() => this.setState({values: eas, time: null})}
+                                                    onClick={() => this.setState({values: eas, time: null, submittedValues: null})}
                                                 >
                                                     {idx + 1}
                                                 </Button>
@@ -466,7 +466,7 @@ export default class App extends Component {
                                             {hardest.map((eas, idx) =>
                                                 <Button
                                                     key={eas + idx}
-                                                    onClick={() => this.setState({values: eas, time: null})}
+                                                    onClick={() => this.setState({values: eas, time: null, submittedValues: null})}
                                                 >
                                                     {idx + 1}
                                                 </Button>
@@ -490,7 +490,7 @@ export default class App extends Component {
                                             {top_95.map((eas, idx) =>
                                                 <Button
                                                     key={eas + idx}
-                                                    onClick={() => this.setState({values: eas, time: null})}
+                                                    onClick={() => this.setState({values: eas, time: null, submittedValues: null})}
                                                 >
                                                     {idx + 1}
                                                 </Button>

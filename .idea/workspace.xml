@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ccb9b59-3506-4890-a5fb-1f1814650418" name="Default" comment="" />
+    <list default="true" id="4ccb9b59-3506-4890-a5fb-1f1814650418" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -27,10 +29,12 @@
       <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="427" column="38" lean-forward="false" selection-start-line="427" selection-start-column="38" selection-end-line="427" selection-end-column="38" />
+            <state relative-caret-position="533">
+              <caret line="444" column="128" lean-forward="false" selection-start-line="444" selection-start-column="128" selection-end-line="444" selection-end-column="128" />
+              <caret line="468" column="128" lean-forward="false" selection-start-line="468" selection-start-column="128" selection-end-line="468" selection-end-column="128" />
+              <caret line="492" column="128" lean-forward="false" selection-start-line="492" selection-start-column="128" selection-end-line="492" selection-end-column="128" />
               <folding>
-                <element signature="e#15541#20592#0" expanded="false" />
+                <element signature="e#15494#20648#0" expanded="false" />
                 <element signature="e#20941#21091#0" expanded="false" />
               </folding>
             </state>
@@ -266,7 +270,7 @@
         <state relative-caret-position="9481">
           <caret line="499" column="67" lean-forward="false" selection-start-line="499" selection-start-column="67" selection-end-line="499" selection-end-column="67" />
           <folding>
-            <element signature="e#15541#20592#0" expanded="false" />
+            <element signature="e#15494#20648#0" expanded="false" />
             <element signature="e#20941#21091#0" expanded="false" />
           </folding>
         </state>
@@ -302,7 +306,7 @@
         <state relative-caret-position="5719">
           <caret line="499" column="67" lean-forward="false" selection-start-line="499" selection-start-column="67" selection-end-line="499" selection-end-column="67" />
           <folding>
-            <element signature="e#15541#20592#0" expanded="false" />
+            <element signature="e#15494#20648#0" expanded="false" />
             <element signature="e#20941#21091#0" expanded="false" />
           </folding>
         </state>
@@ -365,7 +369,7 @@
         <state relative-caret-position="-276">
           <caret line="439" column="80" lean-forward="false" selection-start-line="439" selection-start-column="72" selection-end-line="439" selection-end-column="80" />
           <folding>
-            <element signature="e#15541#20592#0" expanded="false" />
+            <element signature="e#15494#20648#0" expanded="false" />
             <element signature="e#20941#21091#0" expanded="false" />
           </folding>
         </state>
@@ -616,10 +620,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="427" column="38" lean-forward="false" selection-start-line="427" selection-start-column="38" selection-end-line="427" selection-end-column="38" />
+        <state relative-caret-position="533">
+          <caret line="444" column="128" lean-forward="false" selection-start-line="444" selection-start-column="128" selection-end-line="444" selection-end-column="128" />
+          <caret line="468" column="128" lean-forward="false" selection-start-line="468" selection-start-column="128" selection-end-line="468" selection-end-column="128" />
+          <caret line="492" column="128" lean-forward="false" selection-start-line="492" selection-start-column="128" selection-end-line="492" selection-end-column="128" />
           <folding>
-            <element signature="e#15541#20592#0" expanded="false" />
+            <element signature="e#15494#20648#0" expanded="false" />
             <element signature="e#20941#21091#0" expanded="false" />
           </folding>
         </state>
