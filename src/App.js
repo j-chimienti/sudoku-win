@@ -282,7 +282,7 @@ export default class App extends Component {
 
         const rows = [];
 
-        const {values, time, collapse, loading, submittedValues} = this.state;
+        const {values, time, collapse, submittedValues} = this.state;
 
 
         for (let i = 0; i <= 81 - 9; i += 9) {
@@ -394,30 +394,13 @@ export default class App extends Component {
 
         return (
 
-            <Grid>
-                <h2 className={'text-center'}>Sudoku Solver</h2>
+            <div>
 
-
-                <hr/>
                 <form
                     onSubmit={this.handleSubmit}
                 >
 
-                    <Row className={'bottom_row'}>
-                        <Button
-                            onClick={this.reset}
-                        >
-                            Reset
-                        </Button>
 
-                        <Button
-                            bsSize={'large'}
-                            disabled={!!time}
-                            bsStyle={'primary'}
-                            type={'submit'}>
-                            Submit
-                        </Button>
-                    </Row>
                     <Row>
                         <Col sm={3} md={2}>
                             <Grid>
@@ -510,7 +493,23 @@ export default class App extends Component {
 
                     </Row>
                 </form>
-            </Grid>
+                <footer>
+                        <Button
+                            onClick={this.reset}
+                        >
+                            Reset
+                        </Button>
+
+                        <Button
+                            bsSize={'large'}
+                            disabled={!!time}
+                            bsStyle={'primary'}
+                            type={'submit'}>
+                            <i className={'fa fa-pencil'}></i>
+                            {' Solve'}
+                        </Button>
+                </footer>
+            </div>
         )
     }
 }
