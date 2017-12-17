@@ -1,4 +1,6 @@
 
+
+
 .row_flex {
 
     display: flex;
@@ -9,50 +11,48 @@
 .cell {
     text-align: center;
 
-    width: 50px !important;
-    height: 50px !important;
+    width: 50px;
+    height: 50px;
     padding: 0 !important;
-}
-
-.form-control {
-
-    outline: 1px solid;
+    border: 1px solid var(--dark);
 
 }
 
-.row_flex:first-child > .form-control {
 
-    border-top: 4px solid;
 
-}
+.row_flex:first-child > .cell {
 
-.row_flex:nth-child(4) > .form-control {
-
-    border-top: 4px solid;
+    border-top: 4px solid var(--dark);
 
 }
 
-.row_flex:nth-child(7) > .form-control {
+.row_flex:nth-child(4) > .cell {
 
-    border-top: 4px solid;
-
-}
-
-.row_flex:last-child > .form-control {
-
-    border-bottom: 4px solid;
+    border-top: 4px solid var(--dark);
 
 }
 
-.row_flex > .form-control:nth-child(3n) {
+.row_flex:nth-child(7) > .cell {
 
-    border-right: 4px solid;
+    border-top: 4px solid var(--dark);
 
 }
 
-.row_flex > .form-control:first-child {
+.row_flex:last-child > .cell {
 
-    border-left: 4px solid;
+    border-bottom: 4px solid var(--dark);
+
+}
+
+.row_flex > .cell:nth-child(3n) {
+
+    border-right: 4px solid var(--dark);
+
+}
+
+.row_flex > .cell:first-child {
+
+    border-left: 4px solid var(--dark);
 
 }
 
@@ -67,4 +67,9 @@ input {
     bottom: 10px;
     right: 50%;
     transform: translate(-50%);
+}
+
+.cell.active {
+
+    color: red;
 }

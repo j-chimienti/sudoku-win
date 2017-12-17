@@ -203,6 +203,7 @@ export default class App extends Component {
             hard: false,
         },
         loading: false,
+        submittedValues: null,
 
     };
 
@@ -219,6 +220,7 @@ export default class App extends Component {
         this.setState({
             values: "0".repeat(81),
             time: null,
+            submittedValues: null,
         })
     }
 
@@ -233,7 +235,7 @@ export default class App extends Component {
         const _values_ = values_.replace(/[^0-9]/g, '0');
 
 
-        this.setState({loading: true});
+        this.setState({loading: true, values: _values_});
 
 
         fetch('/solve', {
@@ -258,6 +260,7 @@ export default class App extends Component {
 
             this.setState({
                 time,
+                submittedValues: values,
                 values: Object.values(digits).toString().replace(/\,/g, ""),
                 loading: false,
             })
@@ -270,7 +273,8 @@ export default class App extends Component {
     clearGrid() {
 
         this.setState({
-            values: ''.repeat(81)
+            values: ''.repeat(81),
+            submittedValues: null,
         })
     }
 
@@ -278,7 +282,7 @@ export default class App extends Component {
 
         const rows = [];
 
-        const {values, time, collapse, loading} = this.state;
+        const {values, time, collapse, loading, submittedValues} = this.state;
 
 
         for (let i = 0; i <= 81 - 9; i += 9) {
@@ -292,8 +296,9 @@ export default class App extends Component {
                         type={"number"}
                         min={0}
                         max={9}
-                        className={'form-control cell'}
-                        value={values[i] == "0" ? '' : values[i]}
+                        className={submittedValues && submittedValues[i] && submittedValues[i] === '0' ? 'cell active' : 'cell'}
+                        value={values[i] === "0" ? '' : values[i]}
+
                         onChange={e => this.setState({
                             values: values.substr(0, i) + e.target.value + values.substr(i + 1)
                         })
@@ -302,7 +307,7 @@ export default class App extends Component {
                         type={"number"}
                         min={0}
                         max={9}
-                        className={'form-control cell'}
+                        className={submittedValues && submittedValues[i + 1] && submittedValues[i + 1] === '0' ? 'cell active' : 'cell'}
                         value={values[i + 1] === "0" ? '' : values[i + 1]}
                         onChange={e => this.setState({
                             values: values.substr(0, i + 1) + e.target.value + values.substr(i + 1 + 1)
@@ -312,7 +317,7 @@ export default class App extends Component {
                         type={"number"}
                         min={0}
                         max={9}
-                        className={'form-control cell'}
+                        className={submittedValues && submittedValues[i + 2] && submittedValues[i + 2] === '0' ? 'cell active' : 'cell'}
                         value={values[i + 2] === "0" ? '' : values[i + 2]}
                         onChange={e => this.setState({
                             values: values.substr(0, i + 2) + e.target.value + values.substr(i + 2 + 1)
@@ -322,7 +327,7 @@ export default class App extends Component {
                         type={"number"}
                         min={0}
                         max={9}
-                        className={'form-control cell right_border'}
+                        className={submittedValues && submittedValues[i + 3] && submittedValues[i + 3] === '0' ? 'cell active' : 'cell'}
                         value={values[i + 3] === "0" ? '' : values[i + 3]}
                         onChange={e => this.setState({
                             values: values.substr(0, i + 3) + e.target.value + values.substr(i + 3 + 1)
@@ -333,7 +338,7 @@ export default class App extends Component {
                         type={"number"}
                         min={0}
                         max={9}
-                        className={'form-control cell'}
+                        className={submittedValues && submittedValues[i + 4] && submittedValues[i + 4] === '0' ? 'cell active' : 'cell'}
                         value={values[i + 4] === "0" ? '' : values[i + 4]}
                         onChange={e => this.setState({
                             values: values.substr(0, i + 4) + e.target.value + values.substr(i + 4 + 1)
@@ -343,7 +348,7 @@ export default class App extends Component {
                         type={"number"}
                         min={0}
                         max={9}
-                        className={'form-control cell'}
+                        className={submittedValues && submittedValues[i + 5] && submittedValues[i + 5] === '0' ? 'cell active' : 'cell'}
                         value={values[i + 5] === "0" ? '' : values[i + 5]}
                         onChange={e => this.setState({
                             values: values.substr(0, i + 5) + e.target.value + values.substr(i + 5 + 1)
@@ -353,7 +358,7 @@ export default class App extends Component {
                         type={"number"}
                         min={0}
                         max={9}
-                        className={'form-control cell'}
+                        className={submittedValues && submittedValues[i + 6] && submittedValues[i + 6] === '0' ? 'cell active' : 'cell'}
                         value={values[i + 6] === "0" ? '' : values[i + 6]}
                         onChange={e => this.setState({
                             values: values.substr(0, i + 6) + e.target.value + values.substr(i + 6 + 1)
@@ -363,7 +368,7 @@ export default class App extends Component {
                         type={"number"}
                         min={0}
                         max={9}
-                        className={'form-control cell'}
+                        className={submittedValues && submittedValues[i + 7] && submittedValues[i + 7] === '0' ? 'cell active' : 'cell'}
                         value={values[i + 7] === "0" ? '' : values[i + 7]}
                         onChange={e => this.setState({
                             values: values.substr(0, i + 7) + e.target.value + values.substr(i + 7 + 1)
@@ -373,7 +378,7 @@ export default class App extends Component {
                         type={"number"}
                         min={0}
                         max={9}
-                        className={'form-control cell'}
+                        className={submittedValues && submittedValues[i + 8] && submittedValues[i + 8] === '0' ? 'cell active' : 'cell'}
                         value={values[i + 8] === "0" ? '' : values[i + 8]}
                         onChange={e => this.setState({
                             values: values.substr(0, i + 8) + e.target.value + values.substr(i + 8 + 1)
@@ -392,9 +397,7 @@ export default class App extends Component {
             <Grid>
                 <h2 className={'text-center'}>Sudoku Solver</h2>
 
-                {time && <h4>
-                    <b>Solved in </b>{time.toFixed(3)} seconds
-                </h4>}
+
                 <hr/>
                 <form
                     onSubmit={this.handleSubmit}
@@ -416,8 +419,13 @@ export default class App extends Component {
                         </Button>
                     </Row>
                     <Row>
-                        <Col sm={3}>
+                        <Col sm={3} md={2}>
                             <Grid>
+                                <Row>
+                                    {time && <h4>
+                                        <b>Solved in </b>{time.toFixed(3)} seconds
+                                    </h4>}
+                                </Row>
                                 <Row>
 
                                     <Button onClick={() => this.setState(
@@ -496,7 +504,7 @@ export default class App extends Component {
 
 
                         </Col>
-                        <Col sm={9}>
+                        <Col sm={9} md={10}>
                             {rows}
                         </Col>
 

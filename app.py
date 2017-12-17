@@ -4,6 +4,8 @@ from solver import solve, time_solve
 
 import os
 
+env = "production"
+
 app = Flask(__name__, static_url_path="/static")
 
 
@@ -21,18 +23,20 @@ def solve():
     return jsonify('bad request'), 400
 
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def serve(path):
-    return send_from_directory('static', 'index.html')
-
+if env == 'production':
+    @app.route('/', defaults={'path': ''})
+    @app.route('/<path:path>')
+    def serve(path):
+        return send_from_directory('static', 'index.html')
 
 if __name__ == '__main__':
     from argparse import ArgumentParser
 
     parser = ArgumentParser()
     parser.add_argument('-p', '--port', default=5000, type=int, help='port to listen on')
+    parser.add_argument('-e', '--env', default=env, type=str, help="env")
     args = parser.parse_args()
     port = args.port
+    env = args.port
 
     app.run(host='0.0.0.0', debug=True, port=port)
