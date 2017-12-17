@@ -394,122 +394,133 @@ export default class App extends Component {
 
         return (
 
-            <div>
 
-                <form
-                    onSubmit={this.handleSubmit}
-                >
-
-
-                    <Row>
-                        <Col sm={3} md={2}>
-                            <Grid>
-                                <Row>
-                                    {time && <h4>
-                                        <b>Solved in </b>{time.toFixed(3)} seconds
-                                    </h4>}
-                                </Row>
-                                <Row>
-
-                                    <Button onClick={() => this.setState(
-                                        {
-                                            collapse:
-                                                {
-                                                    ...this.state.collapse,
-                                                    easy: !this.state.collapse.easy
-                                                }
-                                        })
-                                    }>Easy</Button>
-                                    <Collapse in={collapse.easy}>
-                                        <div>
-                                            {easy.map((eas, idx) =>
-                                                <Button
-                                                    key={eas + idx}
-                                                    onClick={() => this.setState({values: eas, time: null, submittedValues: null})}
-                                                >
-                                                    {idx + 1}
-                                                </Button>
-                                            )}
-                                        </div>
-                                    </Collapse>
-                                </Row>
-
-                                <Row>
-                                    <Button onClick={() => this.setState(
-                                        {
-                                            collapse:
-                                                {
-                                                    ...this.state.collapse,
-                                                    hard: !this.state.collapse.hard
-                                                }
-                                        })
-                                    }>Hard</Button>
-                                    <Collapse in={collapse.hard}>
-                                        <div>
-                                            {hardest.map((eas, idx) =>
-                                                <Button
-                                                    key={eas + idx}
-                                                    onClick={() => this.setState({values: eas, time: null, submittedValues: null})}
-                                                >
-                                                    {idx + 1}
-                                                </Button>
-                                            )}
-                                        </div>
-                                    </Collapse>
-                                </Row>
-
-                                <Row>
-                                    <Button onClick={() => this.setState(
-                                        {
-                                            collapse:
-                                                {
-                                                    ...this.state.collapse,
-                                                    top_95: !this.state.collapse.top_95
-                                                }
-                                        })
-                                    }>Top 95</Button>
-                                    <Collapse in={collapse.top_95}>
-                                        <div>
-                                            {top_95.map((eas, idx) =>
-                                                <Button
-                                                    key={eas + idx}
-                                                    onClick={() => this.setState({values: eas, time: null, submittedValues: null})}
-                                                >
-                                                    {idx + 1}
-                                                </Button>
-                                            )}
-                                        </div>
-                                    </Collapse>
-                                </Row>
+            <form
+                onSubmit={this.handleSubmit}
+            >
 
 
-                            </Grid>
+                <Row>
+                    <Col sm={3} md={2}>
+                        <Grid>
+                            <Row>
+                                {time && <h4>
+                                    <b>Solved in </b>{time.toFixed(3)} seconds
+                                </h4>}
+                            </Row>
+                            <Row>
+
+                                <Button onClick={() => this.setState(
+                                    {
+                                        collapse:
+                                            {
+                                                ...this.state.collapse,
+                                                easy: !this.state.collapse.easy
+                                            }
+                                    })
+                                }>Easy</Button>
+                                <Collapse in={collapse.easy}>
+                                    <div>
+                                        {easy.map((eas, idx) =>
+                                            <Button
+                                                key={eas + idx}
+                                                onClick={() => this.setState({
+                                                    values: eas,
+                                                    time: null,
+                                                    submittedValues: null
+                                                })}
+                                            >
+                                                {idx + 1}
+                                            </Button>
+                                        )}
+                                    </div>
+                                </Collapse>
+                            </Row>
+
+                            <Row>
+                                <Button onClick={() => this.setState(
+                                    {
+                                        collapse:
+                                            {
+                                                ...this.state.collapse,
+                                                hard: !this.state.collapse.hard
+                                            }
+                                    })
+                                }>Hard</Button>
+                                <Collapse in={collapse.hard}>
+                                    <div>
+                                        {hardest.map((eas, idx) =>
+                                            <Button
+                                                key={eas + idx}
+                                                onClick={() => this.setState({
+                                                    values: eas,
+                                                    time: null,
+                                                    submittedValues: null
+                                                })}
+                                            >
+                                                {idx + 1}
+                                            </Button>
+                                        )}
+                                    </div>
+                                </Collapse>
+                            </Row>
+
+                            <Row>
+                                <Button onClick={() => this.setState(
+                                    {
+                                        collapse:
+                                            {
+                                                ...this.state.collapse,
+                                                top_95: !this.state.collapse.top_95
+                                            }
+                                    })
+                                }>Top 95</Button>
+                                <Collapse in={collapse.top_95}>
+                                    <div>
+                                        {top_95.map((eas, idx) =>
+                                            <Button
+                                                key={eas + idx}
+                                                onClick={() => this.setState({
+                                                    values: eas,
+                                                    time: null,
+                                                    submittedValues: null
+                                                })}
+                                            >
+                                                {idx + 1}
+                                            </Button>
+                                        )}
+                                    </div>
+                                </Collapse>
+                            </Row>
 
 
-                        </Col>
-                        <Col sm={9} md={10}>
-                            {rows}
-                        </Col>
+                        </Grid>
 
-                    </Row>
-                </form>
+
+                    </Col>
+                    <Col sm={9} md={10}>
+                        {rows}
+                    </Col>
+
+                </Row>
+
                 <footer>
-                        <Button
-                            onClick={this.reset}
-                        >
-                            Reset
-                        </Button>
+                    <Button
+                        onClick={this.reset}
+                    >
+                        Reset
+                    </Button>
 
-                        <Button
-                            bsSize={'large'}
-                            disabled={!!time}
-                            bsStyle={'primary'}
-                            type={'submit'}>
-                            <i className={'fa fa-pencil'}></i>
-                            {' Solve'}
-                        </Button>
+                    <Button
+                        bsSize={'large'}
+                        disabled={!!time}
+                        bsStyle={'primary'}
+                        type={'submit'}>
+                        <i className={'fa fa-pencil'}></i>
+                        {' Solve'}
+                    </Button>
                 </footer>
-            </div>
+            </form>
         )
     }
 }
