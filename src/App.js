@@ -162,13 +162,13 @@ export default class App extends Component {
 
             <div>
                 <form
-                    className={'app'}
                     onSubmit={this.handleSubmit}
+                    className={'app'}
                 >
 
+                    <Grid>
 
-                    <Row>
-                        <Col sm={3} md={2}>
+                        <Row>
                             <BoardSelector
                                 collapse={collapse}
                                 handleUpdateCollapse={this.handleUpdateCollapse}
@@ -176,51 +176,49 @@ export default class App extends Component {
                             />
 
 
-                        </Col>
+                        </Row>
+                        <Row className={'row_flex center'}>
+                            <Board
+                                {...this.state}
+                                handleUpdateCellValue={this.handleUpdateCellValue}
 
-
-                    </Row>
-                    <Row className={'row_flex center'}>
-                        <Board
-                            {...this.state}
-                            handleUpdateCellValue={this.handleUpdateCellValue}
-
-                        />
-                    </Row>
+                            />
+                        </Row>
+                    </Grid>
 
 
                 </form>
                 <footer>
-                    <Grid>
-                        <Row className={"row_flex center"}>
-                            <Button
-                                onClick={this.reset}
-                            >
-                                <i className={'fa fa-refresh'}></i>
-                                {' Reset'}
-                            </Button>
+                    <Row className={"row_flex center"}>
+                        <Button
+                            onClick={this.reset}
+                        >
+                            <i className={'fa fa-refresh'}></i>
+                            {' Reset'}
+                        </Button>
 
-                            <Button
-                                bsSize={'large'}
-                                disabled={!!time}
-                                bsStyle={'primary'}
-                                type={'submit'}>
-                                <i className={'fa fa-pencil'}></i>
-                                {' Solve'}
-                            </Button>
+                        <Button
+                            bsSize={'large'}
+                            disabled={!!time}
+                            bsStyle={'primary'}
+                            onClick={this.handleSubmit}
 
-                        </Row>
-                        <Row className={'text-center'}>
-                            {time && <h4>
-                                <b>Solved in </b>{time.toFixed(3)} seconds
-                            </h4>
+                        >
+                            <i className={'fa fa-pencil'}></i>
+                            {' Solve'}
+                        </Button>
 
-                            }
-                            {loading && <span>
+                    </Row>
+                    <Row className={'text-center'}>
+                        {time && <h4>
+                            <b>Solved in </b>{time.toFixed(3)} seconds
+                        </h4>
+
+                        }
+                        {loading && <span>
                                     <i className={'fa fa-refresh fa-spin'}></i>
                                 </span>}
-                        </Row>
-                    </Grid>
+                    </Row>
                 </footer>
 
             </div>

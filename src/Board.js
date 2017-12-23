@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export function Board({values, time, collapse, submittedValues, handleUpdateCellValue}) {
+export function Board({values,submittedValues, handleUpdateCellValue}) {
 
 
     const rows = [];
