@@ -177,14 +177,15 @@ export default class App extends Component {
 
 
                         </Col>
-                        <Col sm={9} md={10}>
-                            <Board
-                                {...this.state}
-                                handleUpdateCellValue={this.handleUpdateCellValue}
 
-                            />
-                        </Col>
 
+                    </Row>
+                    <Row className={'row_flex center'}>
+                        <Board
+                            {...this.state}
+                            handleUpdateCellValue={this.handleUpdateCellValue}
+
+                        />
                     </Row>
 
 
