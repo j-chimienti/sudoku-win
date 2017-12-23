@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "deploy": "git add . && git commit -m 'build' && git push heroku master",
+    "deploy": "npm run build && git add . && git commit -m 'build' && git push heroku master",
     "predeploy": "npm run build",
     "build": "react-scripts build",
     "postbuild": "mv build/static/* build && rm -R build/static && rm -R static && mv build static",
