@@ -12,7 +12,7 @@ export function Board({values, time, collapse, submittedValues, handleUpdateCell
 
         const row = (
 
-            <div key={i} className={'row_flex'} style={{marginLeft: '10vw'}}>
+            <div key={i} className={'row_flex'} style={{marginLeft: '15vw'}}>
 
                 <input
                     type={"number"}

@@ -160,33 +160,35 @@ export default class App extends Component {
 
         return (
 
-
-            <form
-                className={'app'}
-                onSubmit={this.handleSubmit}
-            >
-
-
-                <Row>
-                    <Col sm={3} md={2}>
-                        <BoardSelector
-                            collapse={collapse}
-                            handleUpdateCollapse={this.handleUpdateCollapse}
-                            handleNewBoard={this.handleNewBoard}
-                        />
+            <div>
+                <form
+                    className={'app'}
+                    onSubmit={this.handleSubmit}
+                >
 
 
-                    </Col>
-                    <Col sm={9} md={10}>
-                        <Board
-                            {...this.state}
-                            handleUpdateCellValue={this.handleUpdateCellValue}
+                    <Row>
+                        <Col sm={3} md={2}>
+                            <BoardSelector
+                                collapse={collapse}
+                                handleUpdateCollapse={this.handleUpdateCollapse}
+                                handleNewBoard={this.handleNewBoard}
+                            />
 
-                        />
-                    </Col>
 
-                </Row>
+                        </Col>
+                        <Col sm={9} md={10}>
+                            <Board
+                                {...this.state}
+                                handleUpdateCellValue={this.handleUpdateCellValue}
 
+                            />
+                        </Col>
+
+                    </Row>
+
+
+                </form>
                 <footer>
                     <Grid>
                         <Row className={"row_flex center"}>
@@ -219,7 +221,8 @@ export default class App extends Component {
                         </Row>
                     </Grid>
                 </footer>
-            </form>
+
+            </div>
         )
     }
 }
