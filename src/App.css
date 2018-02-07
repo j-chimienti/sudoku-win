@@ -1,9 +1,27 @@
+.btn {
+
+    font-size: 2rem !important;
+}
+
 .app {
 
     margin-top: 20px;
     margin-bottom: 20px;
+    font-size: 2rem;
+    height: 100vh;
+
 }
 
+.row {
+
+    padding: 10px 0;
+
+}
+
+.display_text {
+
+    font-size: 3rem;
+}
 
 .row_flex {
 
@@ -64,20 +82,48 @@
 
 }
 
-input {
-    font-size: 2rem !important;
-}
-
 .cell.active {
 
     color: var(--danger);
 }
 
-footer {
 
-    width: 100vw;
-    height: 20vh;
-    background: var(--dark);
-    text-align: center;
-    padding: 10px;
+
+
+@media (min-width: 768px) {
+
+    .app {
+
+        font-size: 3rem;
+    }
+
+    .cell {
+        text-align: center;
+        min-width: 60px;
+        width: 60px;
+        max-width: 60px;
+        height: 60px;
+        padding: 0 !important;
+        border: 1px solid var(--dark);
+
+    }
+}
+
+@media (min-width: 1000px) {
+
+    .app {
+
+        font-size: 3rem;
+    }
+
+    .cell {
+        text-align: center;
+        min-width: 84px;
+        width: 84px;
+        max-width: 84px;
+        height: 84px;
+        padding: 0 !important;
+        border: 1px solid var(--dark);
+
+    }
 }

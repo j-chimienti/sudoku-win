@@ -142,7 +142,7 @@ export default class App extends Component {
 
     handleUpdateCollapse(type) {
 
-        return this.setState({
+        this.setState({
             collapse:
                 {
                     ...this.state.collapse,
@@ -161,65 +161,75 @@ export default class App extends Component {
         return (
 
             <div>
-                <form
-                    onSubmit={this.handleSubmit}
+                <Grid
                     className={'app'}
                 >
+                    <form
+                        onSubmit={this.handleSubmit}
 
-                    <Grid>
+                    >
 
                         <Row>
-                            <BoardSelector
-                                collapse={collapse}
-                                handleUpdateCollapse={this.handleUpdateCollapse}
-                                handleNewBoard={this.handleNewBoard}
-                            />
 
+                            <Col sm={3}>
+                                <Row>
+                                    <BoardSelector
+                                        collapse={collapse}
+                                        handleUpdateCollapse={this.handleUpdateCollapse}
+                                        handleNewBoard={this.handleNewBoard}
+                                    />
+
+
+                                </Row>
+
+                                <Row className={"center"}>
+                                    <Button
+                                        bsStyle={'secondary'}
+                                        onClick={this.reset}
+                                    >
+                                        <i className={'fa fa-refresh'}></i>
+                                        {' Reset'}
+                                    </Button>
+
+                                    <Button
+                                        bsSize={'large'}
+                                        disabled={!!time}
+                                        bsStyle={'primary'}
+                                        onClick={this.handleSubmit}
+
+                                    >
+                                        <i className={'fa fa-pencil'}></i>
+                                        {' Solve'}
+                                    </Button>
+
+                                </Row>
+                            </Col>
+
+                            <Col sm={9}>
+                                <Row className={'row_flex center'}>
+                                    <Board
+                                        {...this.state}
+                                        handleUpdateCellValue={this.handleUpdateCellValue}
+
+                                    />
+                                </Row>
+                            </Col>
 
                         </Row>
-                        <Row className={'row_flex center'}>
-                            <Board
-                                {...this.state}
-                                handleUpdateCellValue={this.handleUpdateCellValue}
 
-                            />
-                        </Row>
-                    </Grid>
+                    </form>
 
+                    <Row className={'display_text'}>
+                        {time &&
+                        <span><b>Solved in </b>{time.toFixed(3)} seconds</span>
 
-                </form>
-                <footer>
-                    <Row className={"row_flex center"}>
-                        <Button
-                            onClick={this.reset}
-                        >
-                            <i className={'fa fa-refresh'}></i>
-                            {' Reset'}
-                        </Button>
-
-                        <Button
-                            bsSize={'large'}
-                            disabled={!!time}
-                            bsStyle={'primary'}
-                            onClick={this.handleSubmit}
-
-                        >
-                            <i className={'fa fa-pencil'}></i>
-                            {' Solve'}
-                        </Button>
-
-                    </Row>
-                    <Row className={'text-center'}>
-                        {time && <h4>
-                            <b>Solved in </b>{time.toFixed(3)} seconds
-                        </h4>
 
                         }
                         {loading && <span>
                                     <i className={'fa fa-refresh fa-spin'}></i>
                                 </span>}
                     </Row>
-                </footer>
+                </Grid>
 
             </div>
         )

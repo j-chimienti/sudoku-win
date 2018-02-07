@@ -7,8 +7,9 @@ export function BoardSelector({handleNewBoard, collapse, handleUpdateCollapse}) 
 
     return (
 
-        <div>
+        <Grid>
 
+            <h3>Puzzles</h3>
             <Button onClick={() => handleUpdateCollapse('easy')}>Easy</Button>
             <Collapse in={collapse.easy}>
                 <div>
@@ -50,6 +51,7 @@ export function BoardSelector({handleNewBoard, collapse, handleUpdateCollapse}) 
                     )}
                 </div>
             </Collapse>
-        </div>
+
+        </Grid>
     )
 }
