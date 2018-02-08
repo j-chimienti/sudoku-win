@@ -203,6 +203,17 @@ export default class App extends Component {
                                     </Button>
 
                                 </Row>
+
+                                <Row className={'display_text'}>
+                                    {time &&
+                                    <span><b>Solved in </b>{time.toFixed(3)} seconds</span>
+
+
+                                    }
+                                    {loading && <span>
+                                    <i className={'fa fa-refresh fa-spin'}></i>
+                                </span>}
+                                </Row>
                             </Col>
 
                             <Col sm={9}>
@@ -219,16 +230,7 @@ export default class App extends Component {
 
                     </form>
 
-                    <Row className={'display_text'}>
-                        {time &&
-                        <span><b>Solved in </b>{time.toFixed(3)} seconds</span>
 
-
-                        }
-                        {loading && <span>
-                                    <i className={'fa fa-refresh fa-spin'}></i>
-                                </span>}
-                    </Row>
                 </Grid>
 
             </div>
