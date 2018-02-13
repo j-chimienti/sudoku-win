@@ -233,6 +233,16 @@ export default class App extends Component {
 
                 </Grid>
 
+                <footer
+
+                    className={'bg-secondary'}>
+
+                    <h2>
+                        {'Thanks to '}
+                        <a href={'https://github.com/norvig/pytudes'}>Peter Norvig</a>
+                    </h2>
+                </footer>
+
             </div>
         )
     }

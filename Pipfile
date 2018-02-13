@@ -1,14 +1,21 @@
 [[source]]
+
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
+
 [dev-packages]
 
+
+
 [requires]
+
 python_version = "3.6.4"
 
+
 [packages]
-flask = "==0.12.2"
-requests = "==2.18.4"
-gunicorn="==19.7.1"
+
+flask = "*"
+requests = "*"
+gunicorn = "*"

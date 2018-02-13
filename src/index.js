@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import 'react-bootstrap/dist/react-bootstrap.min';
 
-import 'bootswatch/dist/flatly/bootstrap.min.css';
+import 'bootswatch/dist/pulse/bootstrap.min.css';
 
 import 'font-awesome/css/font-awesome.min.css';
 
