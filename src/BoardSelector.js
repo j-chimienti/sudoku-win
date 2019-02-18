@@ -1,57 +1,95 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import {easy, hardest, top_95} from "./grids";
-import {Button, Collapse, Grid, Row} from "react-bootstrap";
 
 
-export function BoardSelector({handleNewBoard, collapse, handleUpdateCollapse}) {
+export class BoardSelector extends React.Component {
 
-    return (
+    state = {
+        visible: null
+    }
+    constructor(props) {
+        super(props);
+        this.updateVisible = this.updateVisible.bind(this)
+    }
 
-        <Grid>
+    updateVisible(visible) {
 
-            <h3>Puzzles</h3>
-            <Button onClick={() => handleUpdateCollapse('easy')}>Easy</Button>
-            <Collapse in={collapse.easy}>
+        this.setState({
+            visible
+        })
+    }
+    render() {
+
+        const {handleNewBoard} = this.props;
+        const {visible} = this.state;
+
+        return (
+
+            <div>
+
+                <h3>Puzzles</h3>
+                <button className={'btn'} onClick={e => {
+                    e.preventDefault()
+                    this.updateVisible('easy')
+                }}>Easy</button>
                 <div>
-                    {easy.map((eas, idx) =>
-                        <Button
-                            key={eas + idx}
-                            onClick={() => handleNewBoard(eas)}
+                    {visible === 'easy' && easy.map((eas, idx) =>
+                        <button className={'btn'}
+                                key={eas + idx}
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    handleNewBoard(eas)
+                                }}
                         >
                             {idx + 1}
-                        </Button>
+                        </button>
                     )}
                 </div>
-            </Collapse>
 
-            <Button onClick={() => handleUpdateCollapse('hard')}>Hard</Button>
-            <Collapse in={collapse.hard}>
+                <button className={'btn'} onClick={e => {
+                    e.preventDefault()
+                    this.updateVisible('hard')
+                }}>Hard</button>
                 <div>
-                    {hardest.map((eas, idx) =>
-                        <Button
-                            key={eas + idx}
-                            onClick={() => handleNewBoard(eas)}
+                    {visible === 'hard' && hardest.map((eas, idx) =>
+                        <button className={'btn'}
+                                key={eas + idx}
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    handleNewBoard(eas)
+                                }}
                         >
                             {idx + 1}
-                        </Button>
+                        </button>
                     )}
                 </div>
-            </Collapse>
 
-            <Button onClick={() => handleUpdateCollapse('top_95')}>Top 95</Button>
-            <Collapse in={collapse.top_95}>
+                <button className={'btn'} onClick={e => {
+                    e.preventDefault()
+                    this.updateVisible('top_95')
+                }}>Top 95</button>
                 <div>
-                    {top_95.map((eas, idx) =>
-                        <Button
-                            key={eas + idx}
-                            onClick={() => handleNewBoard(eas)}
+                    {visible === 'top_95' && top_95.map((eas, idx) =>
+                        <button className={'btn'}
+                                key={eas + idx}
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    handleNewBoard(eas)
+                                }}
                         >
                             {idx + 1}
-                        </Button>
+                        </button>
                     )}
                 </div>
-            </Collapse>
-
-        </Grid>
-    )
+            </div>
+        )
+    }
 }
+
+
+
+BoardSelector.propTypes = {};
+BoardSelector.defaultProps = {};
+
+export default BoardSelector;

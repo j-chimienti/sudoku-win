@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import {Board} from "./Board";
 import './App.css';
 
-import {Row, Col, FormGroup, ControlLabel, FormControl, HelpBlock, Grid, Button, Collapse, Well} from 'react-bootstrap';
 
 import {easy, grid_1, grid_2, hardest, top_95} from "./grids";
 import {BoardSelector} from "./BoardSelector";
@@ -21,19 +20,30 @@ rows.forEach(row => {
     })
 });
 
+const httpPost = (url, data, callback, err = console.error) => {
+    const request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    //request.setRequestHeader('Access-Control-Allow-Origin', '*')
+    // request.setRequestHeader('')
+    // request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    request.onload = () => callback(request);
+    request.onerror = () => err(request);
+    request.send();
+};
+
+
+
+
 
 export default class App extends Component {
 
     state = {
         values: grid_1,
         time: null,
-        collapse: {
-            easy: false,
-            top_95: false,
-            hard: false,
-        },
         loading: false,
         submittedValues: null,
+        invoice: null,
+        showInvoice: false,
 
     };
 
@@ -45,7 +55,6 @@ export default class App extends Component {
         this.reset = this.reset.bind(this);
         this.handleUpdateCellValue = this.handleUpdateCellValue.bind(this);
         this.handleNewBoard = this.handleNewBoard.bind(this);
-        this.handleUpdateCollapse = this.handleUpdateCollapse.bind(this);
     }
 
     reset() {
@@ -68,44 +77,77 @@ export default class App extends Component {
         const _values_ = values_.replace(/[^0-9]/g, '0');
 
 
-        this.setState({loading: true, values: _values_});
+        this.setState({loading: true, values: _values_}, async () => {
 
+            fetch('/solve', {
+                method: 'post',
+                headers: {
+                    'content-type': 'application/json',
+                    'accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    grid: _values_
+                })
+            }).then(response => {
+                return response.json();
+            }).then(result => {
 
-        fetch('/solve', {
-            method: 'post',
-            headers: {
-                'content-type': 'application/json',
-                'accept': 'application/json'
-            },
-            body: JSON.stringify({
-                grid: _values_
+                const [time, solved, digits] = result;
+
+                if (!solved) {
+
+                    throw new Error('could not solve');
+                }
+
+                this.setState({
+                    time,
+                    submittedValues: values,
+                    values: Object.values(digits).toString().replace(/\,/g, ""),
+                    loading: false,
+                })
+
+            }).catch(err => {
+                alert(err.message);
+
+                this.setState({
+                    loading: false,
+                    values: grid_1,
+                })
             })
-        }).then(response => {
-            return response.json();
-        }).then(result => {
 
-            const [time, solved, digits] = result;
 
-            if (!solved) {
+        });
 
-                throw new Error('could not solve');
+
+    }
+    async solveBoard(values) {
+
+
+        httpPost('/solve', null, result => {
+
+            const r = result;
+
+            console.log(result)
+            window.result = result;
+
+            if (result.responseText.match(/^lnbc/)) {
+
+                // fixme: need to post invoice again after payment
+                // need to save token
+
+                this.setState({
+                    invoice: result,
+                    showInvoice: true
+                })
+
             }
+        }, err => {
+            console.log(err);
 
-            this.setState({
-                time,
-                submittedValues: values,
-                values: Object.values(digits).toString().replace(/\,/g, ""),
-                loading: false,
-            })
-
-        }).catch(err => {
-            alert(err.message);
-
-            this.setState({
-                loading: false,
-                values: grid_1,
-            })
+            var j = err;
+            return j;
         })
+
     }
 
     clearGrid() {
@@ -117,6 +159,8 @@ export default class App extends Component {
     }
 
     handleUpdateCellValue(e, i) {
+
+        e.preventDefault()
 
         const {values} = this.state;
 
@@ -140,98 +184,91 @@ export default class App extends Component {
         })
     }
 
-    handleUpdateCollapse(type) {
 
-        this.setState({
-            collapse:
-                {
-                    ...this.state.collapse,
-                    [type]: !this.state.collapse.type
-                }
-        })
-    }
 
 
     render() {
 
 
-        const {time, collapse, loading} = this.state;
+        const {time, loading} = this.state;
 
 
         return (
 
             <div>
-                <Grid
-                    className={'app'}
+                <div className={'header'}>
+                        <h1 className={'pl-4 pt-2'}>Sudoku Solver</h1>
+                </div>
+                <div
+                    className={'app container'}
                 >
                     <form
                         onSubmit={this.handleSubmit}
 
                     >
 
-                        <Row>
+                        <div className={'row'}>
 
-                            <Col sm={3}>
-                                <Row>
+                            <div className={'col-sm-3'}>
+                                <div className={'row'}>
                                     <BoardSelector
-                                        collapse={collapse}
-                                        handleUpdateCollapse={this.handleUpdateCollapse}
                                         handleNewBoard={this.handleNewBoard}
                                     />
 
 
-                                </Row>
+                                </div>
 
-                                <Row className={"center"}>
-                                    <Button
-                                        bsStyle={'secondary'}
+                                <div className={"row"}>
+                                    <button
+                                        className={'btn btn-secondary'}
                                         onClick={this.reset}
                                     >
                                         <i className={'fa fa-refresh'}></i>
                                         {' Reset'}
-                                    </Button>
+                                    </button>
 
-                                    <Button
-                                        bsSize={'large'}
+                                    <button
                                         disabled={!!time}
-                                        bsStyle={'primary'}
+                                        className={'btn btn-primary'}
                                         onClick={this.handleSubmit}
 
                                     >
-                                        <i className={'fa fa-pencil'}></i>
-                                        {' Solve'}
-                                    </Button>
+                                        <i className={'fa fa-pencil mr-2'}></i>
+                                        {'Solve'}
+                                    </button>
 
-                                </Row>
+                                </div>
 
-                                <Row className={'display_text'}>
+                                <div className={'row display_text'}>
                                     {time &&
                                     <span><b>Solved in </b>{time.toFixed(3)} seconds</span>
 
 
                                     }
                                     {loading && <span>
-                                    <i className={'fa fa-refresh fa-spin'}></i>
-                                </span>}
-                                </Row>
-                            </Col>
+                                    <i className={'fa fa-refresh fa-spin'}>
 
-                            <Col sm={9}>
-                                <Row className={'row_flex center'}>
+                                    </i>
+                                </span>}
+                                </div>
+                            </div>
+
+                            <div className={'col-sm-9'}>
+                                <div className={'row center'}>
                                     <Board
                                         {...this.state}
                                         handleUpdateCellValue={this.handleUpdateCellValue}
 
                                     />
-                                </Row>
-                            </Col>
+                                </div>
+                            </div>
 
-                        </Row>
+                        </div>
 
                     </form>
 
 
-                </Grid>
+                </div>
 
                 <footer
 

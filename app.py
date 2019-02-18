@@ -2,12 +2,22 @@ from flask import Flask, jsonify, request, send_from_directory
 
 from solver import solve, time_solve
 
+import requests
+
 import os
 
 env = "production"
 
 app = Flask(__name__, static_url_path="/static")
 
+
+# @app.route('/pay', methods=['POST'])
+# def pay():
+#     result = requests.post("http://localhost:4444/solve")
+#
+#     token = result.headers['X-Token']
+#
+#     invoice = result.body
 
 @app.route('/solve', methods=['POST'])
 def solve():
@@ -33,7 +43,7 @@ if __name__ == '__main__':
     from argparse import ArgumentParser
 
     parser = ArgumentParser()
-    parser.add_argument('-p', '--port', default=5000, type=int, help='port to listen on')
+    parser.add_argument('-p', '--port', default=4444, type=int, help='port to listen on')
     parser.add_argument('-e', '--env', default=env, type=str, help="env")
     args = parser.parse_args()
     port = args.port

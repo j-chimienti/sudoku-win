@@ -1,0 +1,15 @@
+version: '3.4'
+services:
+  sudoku_win:
+    build: .
+#    networks:
+#      - generated_default
+    env_file:
+      - .env
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+
+#networks:
+#  generated_default:
+#    external:
+#      name: generated_default
