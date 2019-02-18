@@ -11,13 +11,7 @@ env = "production"
 app = Flask(__name__, static_url_path="/static")
 
 
-# @app.route('/pay', methods=['POST'])
-# def pay():
-#     result = requests.post("http://localhost:4444/solve")
 #
-#     token = result.headers['X-Token']
-#
-#     invoice = result.body
 
 @app.route('/solve', methods=['POST'])
 def solve():
