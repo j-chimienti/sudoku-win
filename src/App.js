@@ -195,15 +195,12 @@ export default class App extends Component {
 
         return (
 
-            <div>
-                <div className={"navbar navbar-dark bg-primary mb-3"}>
-                        <div className={'container'}>
-                            <h1 className={'navbar-brand'}>Sudoku Solver</h1>
-                        </div>
-                </div>
-                <div
-                    className={'app container'}
-                >
+                <div className={'app'}>
+                    <div className={"navbar navbar-dark bg-primary mb-3"}>
+                            <div className={'container'}>
+                                <h1 className={'navbar-brand'}>Sudoku Solver</h1>
+                            </div>
+                    </div>
                     <form
                         onSubmit={this.handleSubmit}
 
@@ -212,7 +209,7 @@ export default class App extends Component {
                         <div className={'row'}>
 
                             <div className={'col-sm-3'}>
-                                <div className={'row'}>
+                                <div className={'row'} style={{maxHeight: '30rem', overFlowY: "scroll"}}>
                                     <BoardSelector
                                         handleNewBoard={this.handleNewBoard}
                                     />
@@ -268,10 +265,6 @@ export default class App extends Component {
                         </div>
 
                     </form>
-
-
-                </div>
-
                 <footer
 
                     className={'bg-secondary'}>
