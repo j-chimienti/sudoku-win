@@ -196,8 +196,10 @@ export default class App extends Component {
         return (
 
             <div>
-                <div className={'header'}>
-                        <h1 className={'pl-4 pt-2'}>Sudoku Solver</h1>
+                <div className={"navbar navbar-dark bg-primary mb-3"}>
+                        <div className={'container'}>
+                            <h1 className={'navbar-brand'}>Sudoku Solver</h1>
+                        </div>
                 </div>
                 <div
                     className={'app container'}
