@@ -198,7 +198,9 @@ export default class App extends Component {
                 <div className={'app'}>
                     <div className={"navbar navbar-dark bg-primary mb-3"}>
                             <div className={'container'}>
-                                <h1 className={'navbar-brand text-uppercase'}>Sudoku Solver</h1>
+                                <h1
+                                    style={{fontSize: "1.5rem"}}
+                                    className={'navbar-brand text-uppercase'}>Sudoku Solver</h1>
                             </div>
                     </div>
                     <div className={'container'} style={{height: "80vh", minHeight: "400px" }}>
@@ -269,11 +271,10 @@ export default class App extends Component {
                     </div>
                 <footer
 
-                    className={'bg-secondary'}
-                    style={{height: "20vh", minHeight: "200px"}}
+                    style={{height: "20vh", minHeight: "200px", background: "#333"}}
 
                 >
-                    <h2>
+                    <h2 className={'text-light'}>
                         {'Thanks to '}
                         <a href={'https://github.com/norvig/pytudes'}>Peter Norvig</a>
                     </h2>
