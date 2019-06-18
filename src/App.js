@@ -198,77 +198,81 @@ export default class App extends Component {
                 <div className={'app'}>
                     <div className={"navbar navbar-dark bg-primary mb-3"}>
                             <div className={'container'}>
-                                <h1 className={'navbar-brand'}>Sudoku Solver</h1>
+                                <h1 className={'navbar-brand text-uppercase'}>Sudoku Solver</h1>
                             </div>
                     </div>
-                    <form
-                        onSubmit={this.handleSubmit}
+                    <div className={'container'} style={{height: "80vh", minHeight: "400px" }}>
+                        <form
+                            onSubmit={this.handleSubmit}
 
-                    >
+                        >
 
-                        <div className={'row'}>
+                            <div className={'row'}>
 
-                            <div className={'col-sm-3'}>
-                                <div className={'row'} style={{maxHeight: '30rem', overFlowY: "scroll"}}>
-                                    <BoardSelector
-                                        handleNewBoard={this.handleNewBoard}
-                                    />
-
-
-                                </div>
-
-                                <div className={"row"}>
-                                    <button
-                                        className={'btn btn-secondary'}
-                                        onClick={this.reset}
-                                    >
-                                        <i className={'fa fa-refresh'}></i>
-                                        {' Reset'}
-                                    </button>
-
-                                    <button
-                                        disabled={!!time}
-                                        className={'btn btn-primary'}
-                                        onClick={this.handleSubmit}
-
-                                    >
-                                        <i className={'fa fa-pencil mr-2'}></i>
-                                        {'Solve'}
-                                    </button>
-
-                                </div>
-
-                                <div className={'row display_text'}>
-                                    {time &&
-                                    <span><b>Solved in </b>{time.toFixed(3)} seconds</span>
+                                <div className={'col-sm-3'}>
+                                    <div className={'row'} style={{maxHeight: '30rem', overFlowY: "scroll"}}>
+                                        <BoardSelector
+                                            handleNewBoard={this.handleNewBoard}
+                                        />
 
 
-                                    }
-                                    {loading && <span>
+                                    </div>
+
+                                    <div className={"row"}>
+                                        <button
+                                            className={'btn btn-secondary'}
+                                            onClick={this.reset}
+                                        >
+                                            <i className={'fa fa-refresh'}></i>
+                                            {' Reset'}
+                                        </button>
+
+                                        <button
+                                            disabled={!!time}
+                                            className={'btn btn-primary'}
+                                            onClick={this.handleSubmit}
+
+                                        >
+                                            <i className={'fa fa-pencil mr-2'}></i>
+                                            {'Solve'}
+                                        </button>
+
+                                    </div>
+
+                                    <div className={'row display_text'}>
+                                        {time &&
+                                        <span><b>Solved in </b>{time.toFixed(3)} seconds</span>
+
+
+                                        }
+                                        {loading && <span>
                                     <i className={'fa fa-refresh fa-spin'}>
 
                                     </i>
                                 </span>}
+                                    </div>
                                 </div>
+
+                                <div className={'col-sm-9'}>
+                                    <div className={'row center'}>
+                                        <Board
+                                            {...this.state}
+                                            handleUpdateCellValue={this.handleUpdateCellValue}
+
+                                        />
+                                    </div>
+                                </div>
+
                             </div>
 
-                            <div className={'col-sm-9'}>
-                                <div className={'row center'}>
-                                    <Board
-                                        {...this.state}
-                                        handleUpdateCellValue={this.handleUpdateCellValue}
-
-                                    />
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </form>
+                        </form>
+                    </div>
                 <footer
 
-                    className={'bg-secondary'}>
+                    className={'bg-secondary'}
+                    style={{height: "20vh", minHeight: "200px"}}
 
+                >
                     <h2>
                         {'Thanks to '}
                         <a href={'https://github.com/norvig/pytudes'}>Peter Norvig</a>
